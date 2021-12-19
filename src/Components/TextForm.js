@@ -56,6 +56,6 @@ TextForm.propTypes = {
   TextForm.defaultProps = {
   
     textFormLabel : "Enter text to analyze",
-    textFormLabel : "Default heading"
+    heading : "Default heading"
   }
   
