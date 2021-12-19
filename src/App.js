@@ -15,14 +15,24 @@ function App() {
         <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} />
 
         <Routes>
-          <Route path="/about" element={ <About />} />
-          <Route path="/"  element={
-          <div className="container">
-              <TextForm heading="Text Utils" />
-            </div>} >
-          </Route>
-        </Routes> 
-        
+          <Route path="/about" element={<About />} />
+          <Route
+            path="/"
+            element={
+              <div className="container">
+                <TextForm heading="Text Utils" />
+              </div>
+            }
+          ></Route>
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: "1rem" }}>
+                <p>There's nothing here!</p>
+              </main>
+            }
+          />
+        </Routes>
       </div>
     </Router>
   );
