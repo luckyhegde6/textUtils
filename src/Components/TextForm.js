@@ -15,6 +15,10 @@ setText(event.target.value);
     setText(lowerCaseText);
     props.showAlert ("success" ,"Converted to LowerCase");
   }
+  const handleCopyText = () => {
+    navigator.clipboard.writeText(text.value);
+    props.showAlert ("dark" ,"Copied the existing text");
+  }
   const handleClearText = () => {
     setText("");
     props.showAlert ("danger" ,"Cleared the existing text");
@@ -36,6 +40,7 @@ setText(event.target.value);
       </div>
       <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleUpperCase}>Convert to UpperCase</button> 
       <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleLowerCase}>Convert to LowerCase</button>
+      <button disabled={text.length===0} className="btn btn-secondary mx-2 my-2" onClick={handleCopyText}>Copy</button>
       <button disabled={text.length===0} className="btn btn-danger mx-2 my-2" onClick={handleClearText}>Clear</button>
       </div>
       <div className="container my-3">
@@ -45,7 +50,7 @@ setText(event.target.value);
       </div>
       <div className="container my-3">
         <h3>Preview</h3> 
-        <p>{text}</p>
+       <p>{text.length===0 ? "Nothing to Preview" : text}</p>
       </div>
     </div>
   );
