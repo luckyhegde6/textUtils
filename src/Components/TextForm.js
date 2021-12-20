@@ -8,13 +8,16 @@ setText(event.target.value);
   const handleUpperCase = () => {
     let upperCaseText =text.toLocaleUpperCase()
     setText(upperCaseText);
+    props.showAlert ("success" ,"Converted to UpperCase");
   }
   const handleLowerCase = () => {
-    let upperCaseText =text.toLocaleLowerCase()
-    setText(upperCaseText);
+    let lowerCaseText =text.toLocaleLowerCase()
+    setText(lowerCaseText);
+    props.showAlert ("success" ,"Converted to LowerCase");
   }
   const handleClearText = () => {
     setText("");
+    props.showAlert ("danger" ,"Cleared the existing text");
   }
   const [text, setText] = useState('Enter Text here..................');
   return (
@@ -31,14 +34,14 @@ setText(event.target.value);
           onChange={onChangeHandle}
         ></textarea>
       </div>
-      <button className="btn btn-primary mx-2" onClick={handleUpperCase}>Convert to UpperCase</button> 
-      <button className="btn btn-primary mx-2" onClick={handleLowerCase}>Convert to LowerCase</button>
-      <button className="btn btn-danger mx-2" onClick={handleClearText}>Clear</button>
+      <button className="btn btn-primary mx-2 my-2" onClick={handleUpperCase}>Convert to UpperCase</button> 
+      <button className="btn btn-primary mx-2 my-2" onClick={handleLowerCase}>Convert to LowerCase</button>
+      <button className="btn btn-danger mx-2 my-2" onClick={handleClearText}>Clear</button>
       </div>
       <div className="container my-3">
         <h3>Your Text Summary</h3>
-        <p>{text.length} Words , {text.split(" ").length} Characters</p>
-        <p>{text.split(" ").length * 0.08} Minutes to read</p>
+        <p>{text.split(" ").filter((element) => {return element.length!==0}).length} Words , {text.length} Characters</p>
+        <p>{text.split(" ").filter((element) => {return element.length!==0}).length * 0.08} Minutes to read</p>
       </div>
       <div className="container my-3">
         <h3>Preview</h3> 
