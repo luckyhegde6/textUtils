@@ -40,8 +40,8 @@ setText(event.target.value);
       </div>
       <div className="container my-3">
         <h3>Your Text Summary</h3>
-        <p>{text.split(" ").filter((element) => {return element.length!==0}).length} Words , {text.length} Characters</p>
-        <p>{text.split(" ").filter((element) => {return element.length!==0}).length * 0.08} Minutes to read</p>
+        <p>{text.split(/\s+/).filter((element) => {return element.length!==0}).length} Words , {text.length} Characters</p>
+        <p>{text.split(/\s+/).filter((element) => {return element.length!==0}).length * 0.08} Minutes to read</p>
       </div>
       <div className="container my-3">
         <h3>Preview</h3> 
