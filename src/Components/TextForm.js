@@ -34,9 +34,9 @@ setText(event.target.value);
           onChange={onChangeHandle}
         ></textarea>
       </div>
-      <button className="btn btn-primary mx-2 my-2" onClick={handleUpperCase}>Convert to UpperCase</button> 
-      <button className="btn btn-primary mx-2 my-2" onClick={handleLowerCase}>Convert to LowerCase</button>
-      <button className="btn btn-danger mx-2 my-2" onClick={handleClearText}>Clear</button>
+      <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleUpperCase}>Convert to UpperCase</button> 
+      <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleLowerCase}>Convert to LowerCase</button>
+      <button disabled={text.length===0} className="btn btn-danger mx-2 my-2" onClick={handleClearText}>Clear</button>
       </div>
       <div className="container my-3">
         <h3>Your Text Summary</h3>

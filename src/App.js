@@ -31,7 +31,7 @@ function App() {
             path="/"
             element={
               <div className="container">
-                <TextForm showAlert={showAlert} heading="Text Utils" />
+                <TextForm showAlert={showAlert} heading="Text Utils | Word counter | Convert to UpperCase , LowerCase" />
               </div>
             }
           ></Route>
