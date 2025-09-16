@@ -21,3 +21,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Vite / Playwright
+/dist
+/.playwright
+playwright-report/
+node_modules/
+/test-results

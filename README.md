@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# TextUtils — Vite + TypeScript + Tailwind + Playwright
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository was migrated from Create React App to a modern Vite + TypeScript setup and includes Tailwind CSS for styling and Playwright for end-to-end tests. A GitHub Actions workflow builds the site and runs Playwright on push/PR to `main`.
 
-## Available Scripts
+Quick commands
 
-In the project directory, you can run:
+- Install dependencies
 
-### `npm start`
+```bash
+npm ci
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Run development server (Vite)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+npm run dev
+```
 
-### `npm test`
+- Build for production
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm run build
+```
 
-### `npm run build`
+- Preview production build
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm run preview
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Run Playwright end-to-end tests (requires the app to be running at `http://localhost:5173`)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm run test:e2e
+```
 
-### `npm run eject`
+Note: Playwright is configured to start a preview server automatically when running tests (see `playwright.config.ts` -> `webServer`). You can run `npm run test:e2e` and Playwright will start a preview server on port `5173` for the duration of the tests. If you prefer to start the server yourself, run `npm run preview -- --port 5173` first.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Notes and next steps
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- This migration updated the project layout to use `index.html` + `src/main.tsx` as Vite expects and converted `App` to TypeScript. Existing components in `src/Components` remain JavaScript — you can incrementally convert them to `.tsx` and add types.
+- Tailwind is configured via `tailwind.config.cjs` and PostCSS (`postcss.config.cjs`). The main stylesheet `src/index.css` includes Tailwind directives.
+- Playwright config lives in `playwright.config.ts` and a basic example test is included in `tests/example.spec.ts`.
+ - Playwright config lives in `playwright.config.ts`. There are now two test types in `tests/`:
+	 - `unit.calc.spec.ts` — small unit-style tests that exercise utility functions (run with Playwright runner).
+	 - `example.spec.ts` — e2e test that visits the site (Playwright will start the preview server automatically).
+- CI workflow at `.github/workflows/ci.yml` will install, build and run Playwright on Ubuntu runners.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+If you'd like, I can:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Convert all `src/Components/*.js` to `.tsx` with types.
+- Add unit tests (Jest/Vitest) and type-checking CI step.
+- Add Playwright test recording and screenshots configuration.
 
-## Learn More
+Local CI / Troubleshooting
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- To run CI-like steps locally:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm ci
+npm run build
+npm run preview -- --port 5173 &
+# wait for server to be available, then:
+npx playwright test
+```
 
-### Code Splitting
+Converting components to TypeScript
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Existing files in `src/Components` are still `.js`. To convert a component:
 
-### Analyzing the Bundle Size
+1. Rename `ComponentName.js` to `ComponentName.tsx`.
+2. Add types for `props` and state where appropriate.
+3. Fix any TypeScript errors and run `npm run dev`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+If you want, I can convert all components to `.tsx` and add stricter type checking in CI.
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Contact me which next step you'd like me to take.
