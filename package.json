@@ -16,7 +16,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-is": "^19.1.1",
-    "react-router-dom": "^6.14.1"
+    "react-router-dom": "^7.9.4"
   },
   "devDependencies": {
     "@playwright/test": "^1.40.0",
